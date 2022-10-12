@@ -1,1 +1,21 @@
-<p>recipe-item works!</p>
+<!-- <app-recipe-item></app-recipe-item> -->
+<!-- We Use *ngFor to Replicate/Loop through the Items  -->
+<a href="#" 
+class="list-group-item clearfix" 
+(click)="onSelected()">
+<!-- ADD A CLICK EVENT To SELECT A PARTICULAR RECIPE -->
+    <div class="pull-left">
+        <!-- We Use STRING INTERPOLATION to Output our recipe -->
+        <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
+        <p class="list-group-item-text">{{ recipe.description }}</p>
+    </div>
+    <span class="pull-right">
+        <!-- src="{{ recipe.imagePath }}" -->
+        <img 
+        [src]="recipe.imagePath"
+        alt="{{ recipe.name }}" 
+        class="img-responsive" 
+        style="max-height: 50px;" 
+        >
+    </span>
+</a>

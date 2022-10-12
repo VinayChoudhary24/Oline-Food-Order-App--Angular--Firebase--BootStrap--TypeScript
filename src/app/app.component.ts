@@ -9,4 +9,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  loadedFeatue = 'recipe';
+
+  // onNavigate(), function will NAVIGATE different LINKS
+  onNavigate(feature:  string) {
+    this.loadedFeatue = feature;
+  }
 }
