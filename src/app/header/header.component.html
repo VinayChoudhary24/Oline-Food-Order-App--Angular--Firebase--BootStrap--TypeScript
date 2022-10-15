@@ -12,21 +12,29 @@
             <ul class="nav navbar-nav">
                 <!-- Li, to Arrange the Items inside Automatically -->
                 <!-- FOR RECIPES -->
-                <li><a href="#" 
-                    (click)="onSelect('recipe')">Recipes</a></li>
+                <!-- After routing added, we dont need this  -->
+                <!-- <li><a href="#" (click)="onSelect('recipe')">Recipes</a></li> -->
+
+                <!-- For Recipes LINK/route -->
+                <!-- Add routerLinkActive directive to show/Style the Current Active Class -->
+                <li routerLinkActive="active"><a routerLink="/recipes">Recipes</a></li>
+
                 <!-- FOR SHOPPING LIST -->
-                <li><a href="#" 
-                    (click)="onSelect('shopping-list')">Shopping List</a></li>
+                <!-- <li><a href="#" (click)="onSelect('shopping-list')">Shopping List</a></li> -->
+
+                <!-- For Shopping-list LINK/route -->
+                <li routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
+
             </ul>
             <!--  -->
             <!-- navbar-right Will Arrange the Items in the Right Side of the Header -->
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown" appDropdown>
                     <!-- This is the Dropdown Arrow and Class of CARET will give us the  Dropdown Arrow -->
-                    <a href="#" class="dropdown-toggle" role="button" >Manage <span class="caret"></span></a>
+                    <a style="cursor: pointer;" class="dropdown-toggle" role="button" >Manage <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Save Data</a></li>
-                        <li><a href="#">Fetch Data</a></li>
+                        <li><a style="cursor: pointer;">Save Data</a></li>
+                        <li><a style="cursor: pointer;">Fetch Data</a></li>
                     </ul>
                 </li>
             </ul>

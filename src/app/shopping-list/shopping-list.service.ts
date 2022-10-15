@@ -25,4 +25,14 @@ addIngredient(ingredient: Ingredient) {
     this.ingredients.push(ingredient);
     this.ingredientChanged.emit(this.ingredients.slice());
 }
+
+// Add this Method to add ingredients to the ShoppingList
+addIngredients(ingredients: Ingredient[]) {
+  // Use Spread Operator to Push the Ingredients
+  // Spread will Convert the Array of Elements into List of Elements
+  this.ingredients.push(...ingredients);
+  // To Pass a Copy of it
+  this.ingredientChanged.emit(this.ingredients.slice());
+}
+
 }

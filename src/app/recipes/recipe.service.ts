@@ -1,8 +1,12 @@
 // This Service is to Manage the Recipes
 
-import { EventEmitter } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
 import { Ingredient } from "../shared/ingredients.model";
+import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { Recipe } from "./recipe.model";
+
+// Use @Injectable to Access/Inject the Shopping List Service Here
+@Injectable()
 
 // Providing the recipe.service in recipes.component.ts and Add it into the Constructor of the Component where we want to Use it 
 export class RecipeService {
@@ -64,10 +68,24 @@ export class RecipeService {
     ]),
   ];
 
+//   Add Constructor to Use the Shopping List Service
+constructor( private slService: ShoppingListService ) {}
+
 //   A Method to get the Service from Outside
     getRecipes() {
         // Use SLICE() so that it will Return the Exact Copy of this recipes ARRAY
         return this.recipes.slice();
+    }
+
+    // ## This Method will take the ID/Index and Load the recipe-detail component
+    getRecipe(index: number) {
+        return this.recipes[index];
+    }
+
+    // Method to get the INGRDIENTS
+    addIngredientsToShoppingList(ingredients: Ingredient[]) {
+        // Here we Need to get Access to the Shopping List Service so Now we Inject a Service into Another Service i.e @Injectable
+        this.slService.addIngredients(ingredients);
     }
 
 }

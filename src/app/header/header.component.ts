@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component } from "@angular/core";
 
 @Component({
     selector: 'app-header',
@@ -9,10 +9,14 @@ import { Component, EventEmitter, Output } from "@angular/core";
 export class HeaderComponent {
     // add a Property
     // Create a Variable that will be LISTENED(@Output) by other Components, and EMIT the FEATURES
-    @Output() featureSelected = new EventEmitter<string>();
+    // After routing we dont need this
+    // @Output() featureSelected = new EventEmitter<string>();
+
+
 
     // This function will Fire the LINKS in the HEADER Section
-    onSelect(feature: string) {
-        this.featureSelected.emit(feature);
-    }
+    // After routing we dont need this
+    // onSelect(feature: string) {
+    //     this.featureSelected.emit(feature);
+    // }
 }

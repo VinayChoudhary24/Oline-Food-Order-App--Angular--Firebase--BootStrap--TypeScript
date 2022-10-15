@@ -7,12 +7,16 @@
     </div>
     <!-- RECIPE-DETAILS -->
     <div class="col-md-7">
+        <!-- Add router-outlet to Display the Children[ recipe-detail.component, recipe-start.component] routing from app.routing.module -->
+        <router-outlet></router-outlet>
+
+        <!--### After Routing we Dont Need this Section -->
         <!-- Add *ngIf to Display the Details -->
-        <app-recipe-details *ngIf="selectedRecipe else infoText"
-        [recipe]="selectedRecipe"></app-recipe-details>
+        <!-- <app-recipe-details *ngIf="selectedRecipe else infoText"
+        [recipe]="selectedRecipe"></app-recipe-details> -->
         <!-- Use ng-template to Display the Dummy text if No Recipe is selected -->
-        <ng-template #infoText>
+        <!-- <ng-template #infoText>
             <p>Please Select a Recipe!!</p>
-        </ng-template>
+        </ng-template> -->
     </div>
 </div>
