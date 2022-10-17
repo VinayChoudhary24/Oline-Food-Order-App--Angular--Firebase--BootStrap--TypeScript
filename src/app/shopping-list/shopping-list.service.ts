@@ -1,11 +1,19 @@
-import { EventEmitter } from "@angular/core";
+// import { EventEmitter } from "@angular/core";
+
+// OBSERVABLE Subject to emit Event
+import { Subject } from "rxjs";
+
 import { Ingredient } from "../shared/ingredients.model";
 
 // Providing the shopping-list.service in app.module.ts and Add it into the Constructor of the Component where we want to Use it 
 export class ShoppingListService {
 
-    // When we ADD a Ingredient in the Shopping List
-    ingredientChanged = new EventEmitter<Ingredient[]>();
+  // Add Subject Emit event rather than EvventEmitter -- to all the Services Files
+  ingredientChanged = new Subject<Ingredient[]>();
+
+    // After Adding Observables we Dont need this -- to all the Services Files
+  // When we ADD a Ingredient in the Shopping List
+    // ingredientChanged = new EventEmitter<Ingredient[]>();
 
       // add Ingrediants
        //  Make it PRIVATE so that no-one can Access this Service from Outside
@@ -23,7 +31,8 @@ getIngredients() {
 // Functionality to Add the INGREDIENTS
 addIngredient(ingredient: Ingredient) {
     this.ingredients.push(ingredient);
-    this.ingredientChanged.emit(this.ingredients.slice());
+    // After Adding Observables, we Need to Call NEXT() and Not emit()
+    this.ingredientChanged.next(this.ingredients.slice());
 }
 
 // Add this Method to add ingredients to the ShoppingList
@@ -32,7 +41,7 @@ addIngredients(ingredients: Ingredient[]) {
   // Spread will Convert the Array of Elements into List of Elements
   this.ingredients.push(...ingredients);
   // To Pass a Copy of it
-  this.ingredientChanged.emit(this.ingredients.slice());
+  this.ingredientChanged.next(this.ingredients.slice());
 }
 
 }

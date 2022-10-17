@@ -1,6 +1,7 @@
 // This Service is to Manage the Recipes
 
-import { EventEmitter, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
+// import { Subject } from "rxjs";
 import { Ingredient } from "../shared/ingredients.model";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { Recipe } from "./recipe.model";
@@ -10,9 +11,13 @@ import { Recipe } from "./recipe.model";
 
 // Providing the recipe.service in recipes.component.ts and Add it into the Constructor of the Component where we want to Use it 
 export class RecipeService {
-    
+
+    // Add Subject Emit event rather than EvventEmitter -- to all the Services Files
+    // recipeSelected = new Subject<Recipe>()
+
+  // After Adding Observables we Dont need this -- to all the Services Files
     // Add a Property to transfer the Data
-    recipeSelected = new EventEmitter<Recipe>() 
+    // recipeSelected = new EventEmitter<Recipe>() 
  
      // This Array Contains all the Recipes i.e Recipe MODEL
     //  Make it PRIVATE so that no-one can Access this Service from Outside
