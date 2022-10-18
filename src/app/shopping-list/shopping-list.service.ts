@@ -11,6 +11,9 @@ export class ShoppingListService {
   // Add Subject Emit event rather than EvventEmitter -- to all the Services Files
   ingredientChanged = new Subject<Ingredient[]>();
 
+  // To Edit the Items in the Shopping List
+  startedEditing = new Subject<number>();
+
     // After Adding Observables we Dont need this -- to all the Services Files
   // When we ADD a Ingredient in the Shopping List
     // ingredientChanged = new EventEmitter<Ingredient[]>();
@@ -33,6 +36,18 @@ addIngredient(ingredient: Ingredient) {
     this.ingredients.push(ingredient);
     // After Adding Observables, we Need to Call NEXT() and Not emit()
     this.ingredientChanged.next(this.ingredients.slice());
+}
+
+// To Update if in EditMode
+updateIngredient(index: number, newIngredient: Ingredient) {
+  this.ingredients[index] = newIngredient;
+  this.ingredientChanged.next(this.ingredients.slice());
+}
+
+
+// This Method will Load the Shopping List item Into the Form
+getIngredient(index: number) {
+  return this.ingredients[index];
 }
 
 // Add this Method to add ingredients to the ShoppingList

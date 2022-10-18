@@ -1,17 +1,22 @@
 <!-- This will  -->
 <div class="row">
     <div class="col-xs-12">
-        <form>
+        <!-- Adding Forms -- Template Driven by adding reference #f -->
+        <form (ngSubmit)="onAddItem(f)" #f="ngForm">
             <div class="row">
                 <div class="col-sm-5 form-group">
-                    <!-- Add #LocalReference So that when we Click on Add, Delete, Clear buttons it BINDS with the INPUT -->
+                <!-- Add #LocalReference name="name" So that when we Click on Add, Delete, Clear buttons it BINDS with the INPUT -->
                     <label for="name">Name</label>
                     <input 
                     type="text" 
                     id="name" 
                     class="form-control"
-                    #nameInput >
+                    name="name"
+                    ngModel
+                    required
+                    >
                 </div>
+                <!-- name="", ngModel are required for the Form && required is for the Validation -->
                 <!--TO ADD NEW INGREDIENTS  -->
                 <div class="col-sm-2 form-group">
                     <label for="amount">Amount</label>
@@ -19,8 +24,13 @@
                     type="number" 
                     id="amount" 
                     class="form-control"
-                    #amountInput >
-                    
+                    name="amount"
+                    ngModel
+                    required
+                    pattern="^[1-9]+[0-9]*$"
+                    >
+                    <!-- Using [pattern] to make sure we don't add NEGATIVE Values in Forms -->
+                    <!-- name="", ngModel are required for the Form && required is for the Validation -->
                 </div>
             </div>
             <!-- To Manage the Recipe -->
@@ -29,7 +39,8 @@
                     <button 
                     type="submit" 
                     class="btn btn-success"
-                    (click)="onAddItem()">Add</button>
+                    [disabled]="!f.valid"
+                    >{{ editMode ? 'Update' : 'Add' }}</button>
 
                     <button 
                     type="button" 
