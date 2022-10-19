@@ -59,4 +59,10 @@ addIngredients(ingredients: Ingredient[]) {
   this.ingredientChanged.next(this.ingredients.slice());
 }
 
+// DeleteIngredient from the Shopping List 
+deleteIngredient(index: number) {
+  this.ingredients.splice(index, 1);
+  this.ingredientChanged.next(this.ingredients.slice());
+};
+
 }

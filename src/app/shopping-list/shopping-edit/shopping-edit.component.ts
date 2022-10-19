@@ -44,7 +44,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   }
 
   // ADD Functionality
-  onAddItem(form: NgForm) {
+  onSubmit(form: NgForm) {
     // After Forms we don't need this
     // const ingName = this.nameInputRef.nativeElement.value;
     // const ingAmount = this.amountInputRef.nativeElement.value;
@@ -57,14 +57,23 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     } else {
       this.slService.addIngredient(newIngredient);
     }
+    // Set the Edit Mode False Back Again so that Update andAdd items Simultaneously
+    this.editMode = false;
+    form.reset();
   }
   
   // // DELETE Functionality
-  // onDeleteItem() {}
+  onDelete() {
+    this.slService.deleteIngredient(this.editedItemindex);
+    this.onClear();
+  }
 
   
   // // CLEAR Functionality
-  // onClearItem() {}
+  onClear() {
+    this.slForm.reset();
+    this.editMode = false;
+  }
 
   // This Will Destroy the Subscription
   ngOnDestroy() {

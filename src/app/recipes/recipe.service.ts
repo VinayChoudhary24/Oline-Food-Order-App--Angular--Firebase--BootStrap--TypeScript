@@ -1,6 +1,7 @@
 // This Service is to Manage the Recipes
 
 import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 // import { Subject } from "rxjs";
 import { Ingredient } from "../shared/ingredients.model";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
@@ -18,6 +19,9 @@ export class RecipeService {
   // After Adding Observables we Dont need this -- to all the Services Files
     // Add a Property to transfer the Data
     // recipeSelected = new EventEmitter<Recipe>() 
+
+    // Add this Property to Add/Update a New Recipe to the List of Recipes
+    recipesChanged = new Subject<Recipe[]>();
  
      // This Array Contains all the Recipes i.e Recipe MODEL
     //  Make it PRIVATE so that no-one can Access this Service from Outside
@@ -91,6 +95,27 @@ constructor( private slService: ShoppingListService ) {}
     addIngredientsToShoppingList(ingredients: Ingredient[]) {
         // Here we Need to get Access to the Shopping List Service so Now we Inject a Service into Another Service i.e @Injectable
         this.slService.addIngredients(ingredients);
+    }
+
+    // This Method will Add a NEW RECIPE in the recipe Section
+    addRecipe(recipe: Recipe) {
+        this.recipes.push(recipe);
+        // to Add/Update a New Recipe to the List of Recipes
+        this.recipesChanged.next(this.recipes.slice())
+    }
+    
+    // This Method will UPDATE a EXISTING Recipe in the recipe Section
+    updateRecipe(index: number, newRecipe: Recipe) {
+        this.recipes[index] = newRecipe;
+        // to Add/Update a New Recipe to the List of Recipes
+        this.recipesChanged.next(this.recipes.slice());
+    }
+
+    // deleting a recipe from the recipe List
+    deleteRecipe(index: number) {
+        this.recipes.splice(index, 1);
+        // to Add/Update a New Recipe to the List of Recipes
+        this.recipesChanged.next(this.recipes.slice());
     }
 
 }

@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-xs-12">
         <!-- Adding Forms -- Template Driven by adding reference #f -->
-        <form (ngSubmit)="onAddItem(f)" #f="ngForm">
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
             <div class="row">
                 <div class="col-sm-5 form-group">
                 <!-- Add #LocalReference name="name" So that when we Click on Add, Delete, Clear buttons it BINDS with the INPUT -->
@@ -45,11 +45,13 @@
                     <button 
                     type="button" 
                     class="btn btn-danger"
-                    >Delete</button>
+                    (click)="onDelete()"
+                    *ngIf="editMode">Delete</button>
 
                     <button 
                     type="button" 
                     class="btn btn-primary"
+                    (click)="onClear()"
                     >Clear</button>
                 </div>
             </div>
