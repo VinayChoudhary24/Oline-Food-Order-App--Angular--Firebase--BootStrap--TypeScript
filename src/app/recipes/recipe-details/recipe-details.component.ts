@@ -56,6 +56,8 @@ export class RecipeDetailsComponent implements OnInit {
   // This will call the deleteRecipe Method From recipe.services
   onDeleteRecipe() {
     this.recipeService.deleteRecipe(this.id);
+    // This will Navigate away after Delete Button Pressed
+    this.router.navigate(['/recipes']);
   }
 
 }

@@ -71,6 +71,12 @@ export class RecipeEditComponent implements OnInit {
       this.router.navigate(['../'], {relativeTo: this.route})
     }
 
+    // this function will delete Ingredient from the
+    onDeleteIngredient(index: number) {
+      (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
+      // (<FormArray>this.recipeForm.get('ingredients')).clear();
+    }
+
   // Reactive FORM
   private initForm() {
     let recipeName = '';

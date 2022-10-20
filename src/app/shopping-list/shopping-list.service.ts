@@ -22,8 +22,8 @@ export class ShoppingListService {
        //  Make it PRIVATE so that no-one can Access this Service from Outside
   private ingredients: Ingredient[] = [
     // Here we Create the INSTANCE/BLUEPRINT of the ingredient.model class/Object with the 'new' Keyword
-    new Ingredient('Apples', 13),
-    new Ingredient('tomato', 13),
+    // new Ingredient('Apples', 13),
+    // new Ingredient('tomato', 13),
   ];
 
 //   Add a Method to get the Ingredients

@@ -9,7 +9,7 @@ import { RecipeService } from './recipe.service';
 
   // Providing recipe.service.ts will make sure All its COMPONENTS use This INSTANCE from Here
   // Providing the recipe.service Here and Add it into the Constructor Below
-  providers: [RecipeService]
+  // providers: [RecipeService]
 })
 export class RecipesComponent implements OnInit {
   // selectedRecipe: Recipe;
