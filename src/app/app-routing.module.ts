@@ -2,9 +2,11 @@
 
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { AuthComponent } from "./auth/auth.component";
 import { RecipeDetailsComponent } from "./recipes/recipe-details/recipe-details.component";
 import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component";
 import { RecipeStartComponent } from "./recipes/recipe-start/recipe-start.component";
+import { RecipesResolverService } from "./recipes/recipes-resolver.service";
 import { RecipesComponent } from "./recipes/recipes.component";
 import { ShoppingListComponent } from "./shopping-list/shopping-list.component";
 
@@ -25,14 +27,17 @@ const appRoutes: Routes = [
           { path: 'new', component: RecipeEditComponent },
 
         // To Load the recipe-detail.component, Here id is the DYNAMIC PARAMETER
-        { path: ':id', component:RecipeDetailsComponent },
+        { path: ':id', component:RecipeDetailsComponent, resolve: [RecipesResolverService] },
 
         // To Load a New Recipe in edit Mode when Click
-        { path: ':id/edit', component: RecipeEditComponent },
+        { path: ':id/edit', component: RecipeEditComponent, resolve: [RecipesResolverService] },
     ] },
 
     // this goes to the shopping-list section i.e /shopping-list
     { path: 'shopping-list', component: ShoppingListComponent },
+
+    // This will Load the Login/Sign up Authentication Page
+    { path: 'auth', component: AuthComponent }
 
 ]
 

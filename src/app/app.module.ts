@@ -16,6 +16,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeService } from './recipes/recipe.service';
+import { HttpClientModule } from '@angular/common/http'
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -30,14 +32,17 @@ import { RecipeService } from './recipes/recipe.service';
     DropdownDirective,
     RecipeStartComponent,
     RecipeEditComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    // Import app-routing.module
-    AppRoutingModule,
     // For Reactive Forms Approach
     ReactiveFormsModule,
+    // For HTTP Requests
+    HttpClientModule,
+    // Import app-routing.module
+    AppRoutingModule,
   ],
    // Providing shopping-list.service.ts will make sure All its COMPONENTS use This INSTANCE from Here
     // Add RecipeService here so that when we add a new Recipe it's not LOST after some Navigations

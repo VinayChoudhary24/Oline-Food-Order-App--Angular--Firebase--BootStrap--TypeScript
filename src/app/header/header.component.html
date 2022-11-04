@@ -15,6 +15,8 @@
                 <!-- After routing added, we dont need this  -->
                 <!-- <li><a href="#" (click)="onSelect('recipe')">Recipes</a></li> -->
 
+                <!-- This is for the Authentication -->
+                <li routerLinkActive="active"><a routerLink="/auth">Sign-up/Login</a></li>
                 <!-- For Recipes LINK/route -->
                 <!-- Add routerLinkActive directive to show/Style the Current Active Class -->
                 <li routerLinkActive="active"><a routerLink="/recipes">Recipes</a></li>
@@ -33,8 +35,9 @@
                     <!-- This is the Dropdown Arrow and Class of CARET will give us the  Dropdown Arrow -->
                     <a style="cursor: pointer;" class="dropdown-toggle" role="button" >Manage <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a style="cursor: pointer;">Save Data</a></li>
-                        <li><a style="cursor: pointer;">Fetch Data</a></li>
+                        <li>
+                            <a style="cursor: pointer;" (click)="onSaveData()">Save Data</a></li>
+                        <li><a style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a></li>
                     </ul>
                 </li>
             </ul>

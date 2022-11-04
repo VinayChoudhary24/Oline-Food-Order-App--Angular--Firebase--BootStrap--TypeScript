@@ -80,6 +80,13 @@ export class RecipeService {
 //   Add Constructor to Use the Shopping List Service
 constructor( private slService: ShoppingListService ) {}
 
+// This will Update the RecipesList Section when we Fetch from Database i.e Click fetch Data
+setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    // To update All places that we changed the Recipes
+    this.recipesChanged.next(this.recipes.slice());
+}
+
 //   A Method to get the Service from Outside
     getRecipes() {
         // Use SLICE() so that it will Return the Exact Copy of this recipes ARRAY
