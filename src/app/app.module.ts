@@ -16,9 +16,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeService } from './recipes/recipe.service';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,10 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
   ],
    // Providing shopping-list.service.ts will make sure All its COMPONENTS use This INSTANCE from Here
     // Add RecipeService here so that when we add a new Recipe it's not LOST after some Navigations
-  providers: [ShoppingListService, RecipeService],
+  providers: [ShoppingListService, RecipeService,
+    // provider for the auth-interceptor.service
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true} 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

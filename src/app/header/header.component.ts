@@ -1,4 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Subscription } from "rxjs";
+import { AuthService } from "../auth/auth.service";
 import { DataStorageService } from "../shared/Http-data-storage.service";
 
 @Component({
@@ -7,9 +9,28 @@ import { DataStorageService } from "../shared/Http-data-storage.service";
     styleUrls: ['./header.component.css']
 })
 
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
+    // To store the user State to Unsubscribe()
+    private userSub: Subscription;
+
+    // To Check is the User is LoggedIn or NOT
+    isAuthenticated = false;
+
     // To access the Http Request 
-    constructor( private dataStorageService: DataStorageService ) {}
+    constructor( private dataStorageService: DataStorageService,
+        // To TRACk the STATE of the User  
+        private authService: AuthService ) {}
+
+        // To Initialize the User State when page Loads
+        ngOnInit(): void {
+            this.userSub = this.authService.user.subscribe( (user) => {
+                this.isAuthenticated = !user ? false : true;
+                // this.isAuthenticated = !!user;
+                // We can also replace this !user ? false : true; with !!user
+                console.log(!user);
+                // console.log(!!user)
+            });
+        }
 
     // add a Property
     // Create a Variable that will be LISTENED(@Output) by other Components, and EMIT the FEATURES
@@ -32,5 +53,15 @@ export class HeaderComponent {
     // Fetch the Recipes from the Database
     onFetchData() {
         this.dataStorageService.fetchRecipes().subscribe();
+    }
+
+    // logout the user by Click
+    onLogout() {
+        this.authService.logout();
+    }
+
+    // Unsubscribe the State of the User
+    ngOnDestroy(): void {
+        this.userSub.unsubscribe();
     }
 }
