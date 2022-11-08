@@ -67,4 +67,10 @@ export class AuthComponent {
 
         form.reset();
     }
+    
+    // Close the Alert-box
+    onHandleError() {
+        this.error = null;
+    }
+
 }

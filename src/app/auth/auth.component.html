@@ -2,9 +2,10 @@
     <div class="col-xs-12 col-md-6 col-md-offset">
 
         <!-- This will Show the Error Message -->
-        <div class="alert alert-danger" *ngIf="error">
+        <!-- <div class="alert alert-danger" *ngIf="error">
             <p>{{ error }}</p>
-        </div>
+        </div> -->
+        <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
 
         <!-- This will Show theLoading-Spinner On the Screen -->
         <div *ngIf="isLoading" style="text-align: center;">

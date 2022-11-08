@@ -20,8 +20,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { AlertComponent } from './shared/alert-dynamic-component/alert.component';
 
 @NgModule({
+  //## For All the Components of the Application
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -36,7 +38,9 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     RecipeEditComponent,
     AuthComponent,
     LoadingSpinnerComponent,
+    AlertComponent,
   ],
+  //## For all the Other Modules Requered in the Application
   imports: [
     BrowserModule,
     FormsModule,
@@ -47,6 +51,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     // Import app-routing.module
     AppRoutingModule,
   ],
+  // ## For all the Services used in the Application
    // Providing shopping-list.service.ts will make sure All its COMPONENTS use This INSTANCE from Here
     // Add RecipeService here so that when we add a new Recipe it's not LOST after some Navigations
   providers: [ShoppingListService, RecipeService,

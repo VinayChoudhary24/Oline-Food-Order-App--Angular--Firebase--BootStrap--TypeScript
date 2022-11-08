@@ -3,6 +3,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AuthComponent } from "./auth/auth.component";
+import { AuthGuard } from "./auth/auth.guard";
 import { RecipeDetailsComponent } from "./recipes/recipe-details/recipe-details.component";
 import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component";
 import { RecipeStartComponent } from "./recipes/recipe-start/recipe-start.component";
@@ -18,8 +19,11 @@ const appRoutes: Routes = [
 
     // This goes the the recipes section i.e /recipes
     // Add the Child Routes
-    { path: 'recipes', component: RecipesComponent, children: [
-        
+    { path: 'recipes', component: RecipesComponent, 
+    
+    canActivate: [AuthGuard], 
+    
+    children: [    
         // To Load the TEXT near recipesComponent
         { path: '', component: RecipeStartComponent },
 
@@ -27,10 +31,14 @@ const appRoutes: Routes = [
           { path: 'new', component: RecipeEditComponent },
 
         // To Load the recipe-detail.component, Here id is the DYNAMIC PARAMETER
-        { path: ':id', component:RecipeDetailsComponent, resolve: [RecipesResolverService] },
+        { path: ':id', component:RecipeDetailsComponent,
+
+        resolve: [RecipesResolverService] },
 
         // To Load a New Recipe in edit Mode when Click
-        { path: ':id/edit', component: RecipeEditComponent, resolve: [RecipesResolverService] },
+        { path: ':id/edit', component: RecipeEditComponent, 
+        
+        resolve: [RecipesResolverService] },
     ] },
 
     // this goes to the shopping-list section i.e /shopping-list
