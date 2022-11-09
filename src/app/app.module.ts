@@ -3,61 +3,45 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
-import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.component';
-import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DropdownDirective } from './shared/dropdown.directive';
-import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { AppRoutingModule } from './app-routing.module';
-import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
-import { RecipeService } from './recipes/recipe.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
-import { AuthComponent } from './auth/auth.component';
-import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
-import { AuthInterceptorService } from './auth/auth-interceptor.service';
-import { AlertComponent } from './shared/alert-dynamic-component/alert.component';
+import { RecipesModule } from './recipes/recipes.module';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core.module';
+import { Authmodule } from './auth/auth.module';
 
 @NgModule({
   //## For All the Components of the Application
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailsComponent,
-    RecipeItemComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
-    DropdownDirective,
-    RecipeStartComponent,
-    RecipeEditComponent,
-    AuthComponent,
-    LoadingSpinnerComponent,
-    AlertComponent,
   ],
   //## For all the Other Modules Requered in the Application
   imports: [
     BrowserModule,
-    FormsModule,
+    // FormsModule,
     // For Reactive Forms Approach
-    ReactiveFormsModule,
+    // ReactiveFormsModule,
     // For HTTP Requests
     HttpClientModule,
     // Import app-routing.module
     AppRoutingModule,
+    // This is the Recipe.module
+    RecipesModule,
+    // This is the Shopping-List.Module
+    ShoppingListModule,
+    // Auth.module
+    Authmodule,
+    // Shared.module
+    SharedModule,
+    // core.module
+    CoreModule,
   ],
   // ## For all the Services used in the Application
    // Providing shopping-list.service.ts will make sure All its COMPONENTS use This INSTANCE from Here
     // Add RecipeService here so that when we add a new Recipe it's not LOST after some Navigations
-  providers: [ShoppingListService, RecipeService,
-    // provider for the auth-interceptor.service
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true} 
-  ],
-  bootstrap: [AppComponent]
+  providers: [],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
