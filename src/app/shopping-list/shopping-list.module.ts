@@ -14,7 +14,8 @@ import { ShoppingListComponent } from "./shopping-list.component";
         FormsModule,
         RouterModule.forChild([
             // this goes to the shopping-list section i.e /shopping-list
-            { path: 'shopping-list', component: ShoppingListComponent },
+            // Path should beEmpty for LazyLoading
+            { path: '', component: ShoppingListComponent },
 
         ]),
         SharedModule,

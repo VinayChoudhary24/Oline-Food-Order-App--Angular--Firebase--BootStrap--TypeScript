@@ -12,7 +12,8 @@ import { SharedModule } from "../shared/shared.module"
     imports: [CommonModule, FormsModule, 
         RouterModule.forChild([
          // This will Load the Login/Sign up Authentication Page
-    { path: 'auth', component: AuthComponent }
+         // Path should beEmpty for LazyLoading
+    { path: '', component: AuthComponent }
 
     ]),
     // For Loading-Spinner import SharedModule

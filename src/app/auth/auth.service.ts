@@ -5,6 +5,9 @@ import { BehaviorSubject, throwError } from "rxjs";
 import { User } from "./user.model";
 import { Router } from "@angular/router";
 
+// For Environment Variables to Load from environment.ts and prod.ts and Replace the key value with this 
+import { environment } from "src/environments/environment";
+
 // This is the Response that we will get from FIREBASE after the SignUp/Login Request
 // The Response Data for SignUp and Login is almost same, with the ONLY difference is the REGISTERED key which is the response for the Login
 // EXPORT interface to use with OBSERVABLES
@@ -35,7 +38,7 @@ export class AuthService {
         private router: Router ) {}
 
     signUp(email: string, password: string) {
-        return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDmmW0q9rEh-BDoOXe80JUkqKZQ5KTxAgo', {
+        return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey, {
             email: email,
             password: password,
             returnSecureToken: true
@@ -49,7 +52,7 @@ export class AuthService {
 
     // Login Process
     login(email: string, password: string) {
-        return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDmmW0q9rEh-BDoOXe80JUkqKZQ5KTxAgo', {
+        return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseAPIKey, {
             email: email,
             password: password,
             returnSecureToken: true

@@ -9,11 +9,11 @@ import { RecipesComponent } from "./recipes.component";
 
 const routes: Routes = [
     // This goes the the recipes section i.e /recipes
-    // Add the Child Routes
-    { path: 'recipes', component: RecipesComponent, 
+    // Here the path should be Empty for LazyLoading to work because path is Shifted to app-routing.module
+    { path: '', component: RecipesComponent, 
     
     canActivate: [AuthGuard], 
-    
+    // Add the Child Routes
     children: [    
         // To Load the TEXT near recipesComponent
         { path: '', component: RecipeStartComponent },

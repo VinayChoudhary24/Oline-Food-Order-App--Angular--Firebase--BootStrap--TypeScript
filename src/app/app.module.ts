@@ -4,12 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
-import { RecipesModule } from './recipes/recipes.module';
-import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { HttpClientModule } from '@angular/common/http'
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
-import { Authmodule } from './auth/auth.module';
 
 @NgModule({
   //## For All the Components of the Application
@@ -21,18 +18,28 @@ import { Authmodule } from './auth/auth.module';
   imports: [
     BrowserModule,
     // FormsModule,
+
     // For Reactive Forms Approach
     // ReactiveFormsModule,
+    
     // For HTTP Requests
     HttpClientModule,
+    
     // Import app-routing.module
     AppRoutingModule,
+    
     // This is the Recipe.module
-    RecipesModule,
+    // Loads from LazyLoading
+    // RecipesModule,
+    
     // This is the Shopping-List.Module
-    ShoppingListModule,
+    // Loads from LazyLoading
+    // ShoppingListModule,
+    
     // Auth.module
-    Authmodule,
+    // Loads from LazyLoading
+    // Authmodule,
+    
     // Shared.module
     SharedModule,
     // core.module
